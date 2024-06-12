@@ -1,0 +1,132 @@
+@import url("https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200..800;1,200..800&display=swap");
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  /* primary */
+  --green-200: hsl(148, 38%, 91%);
+  --green-600: hsl(169, 82%, 27%);
+  --dark-green: hsl(171, 83%, 14%);
+  --red: hsl(0, 66%, 54%);
+  /* neutral */
+  --white: hsl(0, 0%, 100%);
+  --grey-500: hsl(186, 15%, 59%);
+  --grey-900: hsl(187, 24%, 22%);
+}
+
+body {
+  font-family: "Karla", sans-serif;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: var(--green-200);
+  place-content: center;
+  padding: 30px 0;
+}
+
+.form {
+  background-color: var(--white);
+  width: 90%;
+  max-width: 740px;
+  margin: 0 auto;
+  padding: 30px 25px;
+  border-radius: 20px;
+  display: grid;
+  gap: 30px;
+}
+
+.form__header {
+  font-size: 30px;
+  margin-bottom: 5px;
+}
+
+.full-name__container {
+  display: grid;
+  gap: 30px;
+}
+
+.input-label__container {
+  display: grid;
+  gap: 10px;
+}
+
+.label {
+  font-size: 14px;
+  color: var(--grey-900);
+  font-weight: bold;
+}
+
+.asterisk {
+  color: var(--green-600);
+  font-weight: bold;
+  padding-left: 5px;
+}
+
+.input-field {
+  border: none;
+  border-radius: 5px;
+  outline: 1px solid var(--grey-500);
+  padding: 15px 25px;
+  color: var(--grey-900);
+  font-size: 16px;
+}
+
+.input-field:focus {
+  outline: 1px solid var(--green-600);
+}
+
+.input-field--query {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  cursor: pointer;
+}
+
+.input-field--textarea {
+  min-height: 240px;
+}
+
+.query-options__container {
+  display: grid;
+  gap: 15px;
+}
+
+.consent-container {
+  display: flex;
+  gap: 18px;
+}
+
+.submit-button {
+  height: 60px;
+  border-radius: 8px;
+  border: none;
+  background-color: var(--green-600);
+  color: var(--white);
+  letter-spacing: 2px;
+  cursor: pointer;
+}
+
+.submit-button:hover {
+  background-color: var(--dark-green);
+}
+
+@media (min-width: 800px) {
+  .full-name__container {
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+  }
+
+  .query-options__container {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .input-field--textarea {
+    min-height: 100px;
+  }
+}
