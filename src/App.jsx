@@ -1,8 +1,8 @@
-import { useState } from "react";
 import { Input, RadioInput } from "./components/Input";
+import { useFormValidation } from "./useFormValidation";
 
 export default function App() {
-  const [invalidFields, setInvalidFields] = useState({});
+  const { formIsValid, invalidFields, validateField } = useFormValidation({});
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -10,90 +10,41 @@ export default function App() {
     const fd = new FormData(e.target);
     const enteredData = Object.fromEntries(fd.entries());
 
-    const firstNameisInvalid = enteredData.firstName.trim() === "";
-    const lastNameisInvalid = enteredData.lastName.trim() === "";
-    const emailIsInvalid = !enteredData.email.includes("@");
-    const queryTypeIsInvalid = !("query" in enteredData);
-    const messageisInvalid = enteredData.message.trim() === "";
-    const consentIsInvalid = !("consent" in enteredData);
+    validateField(
+      "firstName",
+      enteredData.firstName.trim(),
+      (value) => value !== "",
+      "This field is required"
+    );
 
-    if (firstNameisInvalid) {
-      setInvalidFields((currentErrors) => ({
-        ...currentErrors,
-        firstName: "This field is required",
-      }));
-    } else {
-      setInvalidFields((currentErrors) => {
-        const updatedErrors = { ...currentErrors };
-        delete updatedErrors.firstName;
-        return updatedErrors;
-      });
-    }
+    validateField(
+      "lastName",
+      enteredData.lastName.trim(),
+      (value) => value !== "",
+      "This field is required"
+    );
 
-    if (lastNameisInvalid) {
-      setInvalidFields((currentErrors) => ({
-        ...currentErrors,
-        lastName: "This field is required",
-      }));
-    } else {
-      setInvalidFields((currentErrors) => {
-        const updatedErrors = { ...currentErrors };
-        delete updatedErrors.lastName;
-        return updatedErrors;
-      });
-    }
+    validateField(
+      "email",
+      enteredData.email,
+      (value) => value.includes("@"),
+      "Please, enter a valid email address"
+    );
 
-    if (emailIsInvalid) {
-      setInvalidFields((currentErrors) => ({
-        ...currentErrors,
-        email: "Please, enter a valid email address",
-      }));
-    } else {
-      setInvalidFields((currentErrors) => {
-        const updatedErrors = { ...currentErrors };
-        delete updatedErrors.email;
-        return updatedErrors;
-      });
-    }
+    validateField("query", enteredData.query, (value) => !!value, "Please, select a query type");
+    validateField(
+      "message",
+      enteredData.message.trim(),
+      (value) => value !== "",
+      "This field is required"
+    );
 
-    if (queryTypeIsInvalid) {
-      setInvalidFields((currentErrors) => ({
-        ...currentErrors,
-        query: "Please, select a query type",
-      }));
-    } else {
-      setInvalidFields((currentErrors) => {
-        const updatedErrors = { ...currentErrors };
-        delete updatedErrors.query;
-        return updatedErrors;
-      });
-    }
-
-    if (messageisInvalid) {
-      setInvalidFields((currentErrors) => ({
-        ...currentErrors,
-        message: "This field is required",
-      }));
-    } else {
-      setInvalidFields((currentErrors) => {
-        const updatedErrors = { ...currentErrors };
-        delete updatedErrors.message;
-        return updatedErrors;
-      });
-    }
-
-      if (consentIsInvalid) {
-        setInvalidFields((currentErrors) => ({
-          ...currentErrors,
-          consent: "To submit this form, please consent to being contacted",
-        }));
-      } else {
-        setInvalidFields((currentErrors) => {
-          const updatedErrors = { ...currentErrors };
-          delete updatedErrors.consent;
-          return updatedErrors;
-        });
-      }
+    validateField(
+      "consent",
+      enteredData.consent,
+      (value) => !!value,
+      "To submit this form, please consent to being contacted"
+    );
   }
 
   return (
@@ -158,9 +109,17 @@ export default function App() {
         <label htmlFor="consent">
           I consent to being contacted by the team <span className="asterisk">*</span>
         </label>
-        {invalidFields.consent && <p className="error-text error-text--two-lines">{invalidFields.consent}</p>}
+        {invalidFields.consent && (
+          <p className="error-text error-text--two-lines">{invalidFields.consent}</p>
+        )}
       </div>
       <button className="submit-button">Submit</button>
+      {formIsValid && (
+        <div className="success-message">
+          <h2>Message Sent!</h2>
+          <p>Thanks for completing the form. We'll be in touch soon!</p>
+        </div>
+      )}
     </form>
   );
 }

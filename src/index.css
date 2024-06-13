@@ -27,7 +27,7 @@ body {
   min-height: 100vh;
   background-color: var(--green-200);
   place-content: center;
-  padding: 100px 0;
+  padding: 130px 0;
 }
 
 .form {
@@ -39,6 +39,7 @@ body {
   border-radius: 20px;
   display: grid;
   gap: 35px;
+  position: relative;
 }
 
 .form__header {
@@ -139,6 +140,16 @@ body {
 
 .submit-button:hover {
   background-color: var(--dark-green);
+}
+
+.success-message {
+  position: absolute;
+  bottom: 100%;
+  background-color: var(--dark-green);
+  padding: 30px;
+  width: 100%;
+  border-radius: 10px;
+  color: var(--green-200);
 }
 
 @media (min-width: 470px) {
