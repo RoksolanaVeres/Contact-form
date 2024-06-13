@@ -27,7 +27,7 @@ body {
   min-height: 100vh;
   background-color: var(--green-200);
   place-content: center;
-  padding: 30px 0;
+  padding: 100px 0;
 }
 
 .form {
@@ -38,7 +38,7 @@ body {
   padding: 30px 25px;
   border-radius: 20px;
   display: grid;
-  gap: 30px;
+  gap: 35px;
 }
 
 .form__header {
@@ -48,12 +48,13 @@ body {
 
 .full-name__container {
   display: grid;
-  gap: 30px;
+  gap: 35px;
 }
 
 .input-label__container {
   display: grid;
   gap: 10px;
+  position: relative;
 }
 
 .label {
@@ -77,6 +78,22 @@ body {
   font-size: 16px;
 }
 
+.error-text {
+  color: var(--red);
+  font-size: 14px;
+  position: absolute;
+  bottom: -20px;
+  left: 0;
+}
+
+.error-text--two-lines {
+  bottom: -35px;
+}
+
+.error-outline {
+  outline: 1px solid var(--red);
+}
+
 .input-field:focus {
   outline: 1px solid var(--green-600);
 }
@@ -92,14 +109,22 @@ body {
   min-height: 240px;
 }
 
+.query__container {
+  border: none;
+  position: relative;
+}
+
 .query-options__container {
   display: grid;
   gap: 15px;
+  margin-top: 10px;
 }
 
 .consent-container {
   display: flex;
   gap: 18px;
+  position: relative;
+  margin-bottom: 15px;
 }
 
 .submit-button {
@@ -114,6 +139,12 @@ body {
 
 .submit-button:hover {
   background-color: var(--dark-green);
+}
+
+@media (min-width: 470px) {
+  .error-text--two-lines {
+    bottom: -20px;
+  }
 }
 
 @media (min-width: 800px) {
