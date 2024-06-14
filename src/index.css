@@ -132,6 +132,7 @@ body {
   padding: 5px;
   outline: 2px solid var(--grey-500);
   border: 3px solid transparent;
+  transition: all 0.3s ease-in-out;
 }
 
 .radio-input:checked {
@@ -153,6 +154,7 @@ body {
   height: 17px;
   border: 1.5px solid var(--grey-500);
   cursor: pointer;
+  transition: all 0.3s ease-in-out;
 }
 
 .checkbox-input:checked {
@@ -187,6 +189,7 @@ body {
 
 .consent-text {
   font-size: 14px;
+  cursor: pointer;
 }
 
 .submit-button {
@@ -197,6 +200,7 @@ body {
   color: var(--white);
   letter-spacing: 2px;
   cursor: pointer;
+  transition: all 0.3s ease-in-out;
 }
 
 .submit-button:hover {
@@ -207,21 +211,12 @@ body {
   position: absolute;
   top: 10px;
   left: 50%;
-  transform: translateX(-50%);
   background-color: var(--dark-green);
   padding: 30px;
   width: 100%;
   max-width: 500px;
   border-radius: 10px;
   color: var(--green-200);
-}
-
-.success-message--visible {
-  display: block;
-}
-
-.success-message--hidden {
-  display: none;
 }
 
 .success-header {

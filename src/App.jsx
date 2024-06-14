@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 import { Input, RadioInput } from "./components/Input";
 import { useFormValidation } from "./useFormValidation";
 import SuccessMessage from "./components/SuccessMessage";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function App() {
   const { formIsValid, invalidFields, validateField } = useFormValidation({});
@@ -133,7 +134,10 @@ export default function App() {
         </div>
         <button className="submit-button">Submit</button>
       </form>
-      {formIsValid && successIsVisible && <SuccessMessage enteredData={enteredData} />}
+
+      <AnimatePresence>
+        {formIsValid && successIsVisible && <SuccessMessage enteredData={enteredData} />}
+      </AnimatePresence>
     </div>
   );
 }
