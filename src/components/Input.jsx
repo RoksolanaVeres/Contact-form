@@ -13,7 +13,7 @@ export function Input({ label, id, error, ...props }) {
 export function RadioInput({ label, id, ...props }) {
   return (
     <label htmlFor={id} className="input-field input-field--query">
-      <input type="radio" id={id} {...props} />
+      <input type="radio" id={id} className="radio-input" {...props} />
       <span>{label}</span>
     </label>
   );
