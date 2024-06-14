@@ -216,13 +216,21 @@ body {
   color: var(--green-200);
 }
 
+.success-message--visible {
+  display: block;
+}
+
+.success-message--hidden {
+  display: none;
+}
+
 .success-header {
   font-size: 18px;
   margin-bottom: 10px;
 }
 
 .success-text {
-font-size: 14px;
+  font-size: 14px;
 }
 
 @media (min-width: 470px) {
