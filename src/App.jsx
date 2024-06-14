@@ -6,10 +6,13 @@ import SuccessMessage from "./components/SuccessMessage";
 export default function App() {
   const { formIsValid, invalidFields, validateField } = useFormValidation({});
   const [enteredData, setEnteredData] = useState({});
+  const [successIsVisible, setSuccessIsVisible] = useState(true);
+
   const form = useRef(null);
 
   function handleSubmit(e) {
     e.preventDefault();
+    setSuccessIsVisible(true);
 
     const fd = new FormData(e.target);
     const enteredData = Object.fromEntries(fd.entries());
@@ -56,6 +59,9 @@ export default function App() {
 
   if (formIsValid) {
     form.current.reset();
+    setTimeout(() => {
+      setSuccessIsVisible(false);
+    }, 3000);
   }
 
   return (
@@ -127,7 +133,7 @@ export default function App() {
         </div>
         <button className="submit-button">Submit</button>
       </form>
-      {formIsValid && <SuccessMessage enteredData={enteredData} />}
+      {formIsValid && successIsVisible && <SuccessMessage enteredData={enteredData} />}
     </div>
   );
 }

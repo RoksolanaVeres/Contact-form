@@ -1,19 +1,9 @@
-import { useState, useEffect } from "react";
-
 export default function SuccessMessage({ enteredData }) {
-  const [showSuccess, setShowSuccess] = useState(true);
   const { firstName, email } = enteredData;
-
-  useEffect(() => {
-    const timeoutID = setTimeout(() => setShowSuccess(false), 3500);
-    return () => clearTimeout(timeoutID);
-  }, []);
 
   return (
     <div
-      className={`success-message ${
-        showSuccess ? "success-message--visible" : "success-message--hidden"
-      }`}
+      className="success-message"
     >
       <h2 className="success-header">Message Sent!</h2>
       <p className="success-text">
